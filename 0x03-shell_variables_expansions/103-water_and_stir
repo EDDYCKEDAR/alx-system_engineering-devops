@@ -1,3 +1,2 @@
 #!/bin/bash
-echo "$(( 2#$(echo "$WATER" | tr 'watere' '012345') + 2#$(echo "$STIR" | tr 'stir.' '01234') ))" | \
-  tr '0123456789' 'bestcholhc'
+echo "$(( 2#$(echo "$WATER" | tr 'watere' '012345') + 2#$(echo "$STIR" | tr 'stir.' '01234') ))" | \ tr '0123456789' 'bestcholhc'
