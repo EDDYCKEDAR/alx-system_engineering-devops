@@ -1,0 +1,48 @@
+Scale-Up Web Infrastructure Design
+Overview
+This design focuses on scaling up the web infrastructure by splitting components onto separate servers and adding a load balancer cluster for improved availability and load distribution.
+
+Infrastructure Components
+One Load Balancer Cluster (HAProxy): Two HAProxy instances configured in cluster mode to provide high availability and distribute incoming traffic evenly.
+
+Web Server: Dedicated server running Nginx, responsible for handling HTTP requests and serving static content.
+
+Application Server: Dedicated server running the application logic and processing dynamic requests.
+
+Database Server: Dedicated server running MySQL to store and manage persistent data.
+
+Why add each component?
+Load Balancer Cluster:
+Ensures no single point of failure at the entry point by having multiple HAProxy instances working together. Balances the load among backend servers and automatically redirects traffic if one load balancer fails, improving reliability and uptime.
+
+Dedicated Web Server:
+Separating the web server improves performance by offloading static content serving from the application server. This specialization helps in scaling and isolating web traffic efficiently.
+
+Dedicated Application Server:
+Running the application logic separately allows for better resource allocation, easier maintenance, and independent scaling based on processing needs.
+
+Dedicated Database Server:
+Isolating the database on its own server enhances data security, simplifies backups, and improves performance by reducing resource contention with web and application servers.
+
+Summary
+This scaled-up architecture improves:
+
+Availability: Load balancer clustering removes a single point of failure.
+
+Scalability: Each component can be scaled independently according to its workload.
+
+Performance: Dedicated servers optimize resource usage for specific roles.
+
+Maintainability: Easier updates and troubleshooting on separate servers.
+
+Diagram (conceptual)
+pgsql
+Copy
+Edit
+Client -> [HAProxy Cluster] -> Web Server -> Application Server -> Database Server
+Key Terms
+Application Server: Executes business logic and processes dynamic requests.
+
+Web Server: Handles HTTP requests, serves static files, and proxies dynamic requests to the application server.
+
+Load Balancer: Distributes network or application traffic across multiple servers to increase capacity and reliability.
