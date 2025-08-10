@@ -1,0 +1,33 @@
+Distributed Web Infrastructure Design
+
+Infrastructure Overview
+• Two servers
+• One server runs Nginx web server.
+• One server runs the application server and MySQL database.
+• HAProxy load balancer distributes traffic.
+• Application files deployed on the app server.
+
+Why the additions?
+• Load Balancer (HAProxy): Distributes incoming traffic to prevent overloading one
+server.
+• Separation of concerns: Web server and application server run on different
+machines, improving performance.
+• Database on a separate server: Improves data management and security.
+
+Load Balancer Distribution Algorithm
+• Commonly uses Round Robin: distributes requests evenly in a rotating order.
+• Can use others like least connections or IP hash.
+
+Active-Active vs Active-Passive
+• Active-Active: Both load balancers run simultaneously, sharing load.
+• Active-Passive: One active, one standby for failover.
+
+Primary-Replica (Master-Slave) Database Cluster
+• Primary: Accepts write and read operations.
+• Replica: Syncs from primary, handles read queries to reduce load.
+• Application directs writes to primary, reads can be served from replicas.
+
+Issues with this setup
+• SPOF may still exist at the database or load balancer if not replicated.
+• No firewalls or HTTPS, so vulnerable to attacks.
+• No monitoring to detect issues or performance problems.
