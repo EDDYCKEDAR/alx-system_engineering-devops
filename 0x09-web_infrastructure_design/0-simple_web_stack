@@ -1,0 +1,36 @@
+Simple Web Stack Design
+
+Infrastructure Overview
+• One server with IP address 8.8.8.8 hosts everything.
+• Domain name: foobar.com with a www DNS record pointing to the server IP.
+• Components on the server:
+o Nginx as the web server
+o Application server (e.g., Node.js, Python app)
+o Application files (code base)
+o MySQL database
+
+User Request Flow
+1. User types www.foobar.com in the browser.
+2. DNS resolves www.foobar.com (a CNAME or A record) to IP 8.8.8.8.
+3. The request reaches the server where Nginx receives it.
+4. Nginx forwards dynamic requests to the application server.
+5. The application server processes the logic, accesses the MySQL database as
+needed.
+6. Data is returned to Nginx, which serves the response to the user.
+
+Explanation of Key Elements
+• Server: A physical or virtual machine running services accessible over the network.
+• Domain Name: Human-readable address pointing to an IP via DNS.
+• DNS record (www): Usually an A record mapping domain name to an IP address.
+• Web Server (Nginx): Handles HTTP requests, serves static content, and proxies
+requests to the app server.
+• Application Server: Runs the business logic and processes dynamic content.
+• Database (MySQL): Stores and retrieves application data.
+
+• Communication Protocol: HTTP over TCP/IP between user and server.
+
+Issues with this setup
+• Single Point of Failure (SPOF): If the server fails, the website is down.
+• Downtime during maintenance: Restarting the web server for updates causes
+outages.
+• No scalability: Can't handle increased traffic by adding resources horizontally.
