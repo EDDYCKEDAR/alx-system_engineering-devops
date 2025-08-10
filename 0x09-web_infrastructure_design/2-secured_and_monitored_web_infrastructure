@@ -1,0 +1,38 @@
+Secured and Monitored Web Infrastructure
+Design
+
+Infrastructure Overview
+• Three servers, each protected by firewalls.
+• SSL certificate for HTTPS traffic to secure communication.
+• Monitoring clients (e.g., Sumologic agents) on servers collecting logs and metrics.
+
+Why add these?
+• Firewalls: Control network traffic, protect servers from unauthorized access.
+• HTTPS (SSL/TLS): Encrypt data in transit, protecting user privacy and data integrity.
+• Monitoring tools: Collect data (logs, metrics) to analyze performance and detect
+issues.
+
+Monitoring Details
+• Monitoring clients collect data and send it to centralized monitoring services.
+• To monitor QPS (queries per second) on web servers, configure web server access
+logs or metrics exporters (e.g., Prometheus exporters).
+
+Issues with this setup
+• SSL termination at load balancer can expose unencrypted traffic internally.
+• Only one MySQL server accepts writes; no failover on write operations.
+• Servers running all components (DB, app, web) complicate scaling and security.
+
+Summary
+
+Setup 
+1. Simple Web Stack
+2.Distributed Infrastructure
+3.Secured & Monitored Setup
+Pros
+1. Easy to setup and manage
+2.Better load distribution, separation
+3.Secure, encrypted, monitored
+Cons
+1.SPOF, no scalability, downtime
+2.SPOF, no scalability, downtime
+3.Complexity, SSL termination issue, single write DB
